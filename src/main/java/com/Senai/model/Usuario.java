@@ -1,24 +1,25 @@
-package com.Senai.dao;
+package com.Senai.model;
 
 public abstract class Usuario {
     protected int id;
     protected String nome;
     protected int CPF;
-    protected String endereço;
+    protected String endereco;
     protected int telefone;
     protected String email;
     protected String login;
     protected String senha;
 
-    public Usuario(int id, String nome,int CPF, String endereço, int telefone, String email, String login, String senha) {
+    public Usuario(int id, String nome,int CPF, String endereco, int telefone, String email, String login, String senha) {
         this.id = id;
         this.nome = nome;
         this.CPF = CPF;
-        this.endereço = endereço;
+        this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
         this.login = login;
         this.senha = senha;
+
     }
 
     public int getId() {
@@ -46,11 +47,11 @@ public abstract class Usuario {
     }
 
     public String getEndereço() {
-        return endereço;
+        return endereco;
     }
 
     public void setEndereço(String endereço) {
-        this.endereço = endereço;
+        this.endereco = endereço;
     }
 
     public int getTelefone() {
