@@ -72,5 +72,6 @@ public class ProfessorView {
     private int scannerPromptInt(String msg) {
         System.out.print(msg);
         return Integer.parseInt(scanner.nextLine());
+
     }
 }
