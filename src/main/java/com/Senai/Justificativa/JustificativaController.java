@@ -1,22 +1,32 @@
 package com.Senai.Justificativa;
 
-import java.util.List;
+import java.util.*;
 
 public class JustificativaController {
-    private JustificativaDAO dao;
+    private JustificativaDAO dao = new JustificativaDAO();
+    private int proximoId = 1;
 
-    public JustificativaController() {
-        dao = new JustificativaDAO();
-    }
-
-    public void cadastrar(String nome, int id,  String data, String motivo) {
-
-        Justificativa justificativa = new Justificativa(id, nome, data, motivo);
+    public void cadastrarJustificativa(String nome, String data, String motivo) {
+        Justificativa justificativa = new Justificativa(proximoId++, nome, data, motivo);
         dao.adicionar(justificativa);
-        System.out.println("Justificativa cadastrada com sucesso!");
     }
 
-    public List<Justificativa> listarTodas() {
+    public List<Justificativa> listarJustificativas() {
         return dao.listar();
+    }
+
+    public boolean atualizarJustificativa(int id, String nome, String data, String motivo) {
+        Justificativa j = dao.buscarPorId(id);
+        if (j != null) {
+            j.setNome(nome);
+            j.setData(data);
+            j.setMotivo(motivo);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removerJustificativa(int id) {
+        return dao.remover(id);
     }
 }

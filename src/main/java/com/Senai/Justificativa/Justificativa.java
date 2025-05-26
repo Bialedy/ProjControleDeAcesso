@@ -20,6 +20,10 @@ public class Justificativa implements Serializable {
     public String getData() { return data; }
     public String getMotivo() { return motivo; }
 
+    public void setNome(String nome) { this.nome = nome; }
+    public void setData(String data) { this.data = data; }
+    public void setMotivo(String motivo) { this.motivo = motivo; }
+
     public String toString() {
         return "ID: " + id + ", Nome: " + nome + ", Data: " + data + ", Motivo: " + motivo;
     }

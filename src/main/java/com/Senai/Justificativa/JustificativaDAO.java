@@ -1,43 +1,28 @@
 package com.Senai.Justificativa;
 
-import java.io.*;
 import java.util.*;
 
-import com.Senai.Justificativa.Justificativa;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
 public class JustificativaDAO {
-    private final String ARQUIVO = "justificativas.json";
-    private final Gson gson;
-
-    public JustificativaDAO() {
-        gson = new GsonBuilder().setPrettyPrinting().create();
-    }
+    private List<Justificativa> justificativas = new ArrayList<>();
 
     public void adicionar(Justificativa justificativa) {
-        List<Justificativa> lista = listar();
-        lista.add(justificativa);
-        salvarLista(lista);
+        justificativas.add(justificativa);
     }
 
     public List<Justificativa> listar() {
-        try (Reader reader = new FileReader(ARQUIVO)) {
-            return gson.fromJson(reader, new TypeToken<List<Justificativa>>() {}.getType());
-        } catch (FileNotFoundException e) {
-            return new ArrayList<>();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
+        return justificativas;
     }
 
-    private void salvarLista(List<Justificativa> lista) {
-        try (Writer writer = new FileWriter(ARQUIVO)) {
-            gson.toJson(lista, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public Justificativa buscarPorId(int id) {
+        for (Justificativa j : justificativas) {
+            if (j.getId() == id) {
+                return j;
+            }
         }
+        return null;
+    }
+
+    public boolean remover(int id) {
+        return justificativas.removeIf(j -> j.getId() == id);
     }
 }

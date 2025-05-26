@@ -1,66 +1,44 @@
 package com.Senai.Justificativa;
 
-import java.util.List;
-import java.util.Scanner;
+import com.Senai.Justificativa.JustificativaController;
+import com.Senai.Justificativa.JustificativaView;
 
 public class SistemaJustificativas {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         JustificativaController controller = new JustificativaController();
+        JustificativaView view = new JustificativaView();
 
-        int opcao = -1;
+        while (true) {
+            int opcao = view.exibirMenu();
 
-        while (opcao != 0) {
-            System.out.println("\n=== Sistema de Justificativas ===");
-            System.out.println("1. Cadastrar justificativa");
-            System.out.println("2. Listar justificativas");
-            System.out.println("0. Sair");
-            System.out.print("Escolha uma opção: ");
-
-            try {
-                opcao = Integer.parseInt(scanner.nextLine());
-
-                switch (opcao) {
-                    case 1:
-                        System.out.print("Nome do aluno: ");
-                        String nome = scanner.nextLine();
-
-                        System.out.print("ID do aluno: ");
-                        int id = scanner.nextInt();
-
-                        System.out.print("Data (dd/mm/aaaa):");
-                        String data = scanner.nextLine();
-
-                        System.out.print("Motivo do atraso:");
-                        String motivo = scanner.nextLine();
-
-                        controller.cadastrar(nome, id, data, motivo);
-                        break;
-
-                    case 2:
-                        List<Justificativa> lista = controller.listarTodas();
-                        if (lista.isEmpty()) {
-                            System.out.println("Nenhuma justificativa cadastrada.");
-                        } else {
-                            System.out.println("\n--- Justificativas cadastradas ---");
-                            for (Justificativa j : lista) {
-                                System.out.println(j);
-                            }
-                        }
-                        break;
-
-                    case 0:
-                        System.out.println("Encerrando o sistema.");
-                        break;
-
-                    default:
-                        System.out.println("Opção inválida.");
+            switch (opcao) {
+                case 1 -> {
+                    String nome = view.solicitar("o nome do aluno");
+                    String data = view.solicitar("a data do atraso (dd/mm/aaaa)");
+                    String motivo = view.solicitar("o motivo");
+                    controller.cadastrarJustificativa(nome, data, motivo);
+                    view.mostrarMensagem("Justificativa cadastrada com sucesso!\n");
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("Entrada inválida. Digite um número.");
+                case 2 -> view.exibirJustificativas(controller.listarJustificativas());
+                case 3 -> {
+                    int id = view.solicitarId();
+                    String nome = view.solicitar("o novo nome do aluno");
+                    String data = view.solicitar("a nova data do atraso (dd/mm/aaaa)");
+                    String motivo = view.solicitar("o novo motivo");
+                    boolean atualizado = controller.atualizarJustificativa(id, nome, data, motivo);
+                    view.mostrarMensagem(atualizado ? "Justificativa atualizada com sucesso.\n" : "Justificativa não encontrada.\n");
+                }
+                case 4 -> {
+                    int id = view.solicitarId();
+                    boolean removido = controller.removerJustificativa(id);
+                    view.mostrarMensagem(removido ? "Justificativa removida com sucesso.\n" : "Justificativa não encontrada.\n");
+                }
+                case 5 -> {
+                    System.out.println("Encerrando o sistema.");
+                    return;
+                }
+                default -> System.out.println("Opção inválida.\n");
             }
         }
-
-        scanner.close();
     }
 }
