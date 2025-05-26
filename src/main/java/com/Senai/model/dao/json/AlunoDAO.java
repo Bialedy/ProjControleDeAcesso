@@ -4,26 +4,27 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.GsonBuilder;
 
+import java.io.IOException;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AlunoDAO {
-        private static final String CAMINHO_ARQUIVO = "data/alunos.json";
+        private static final String caminho = "alunos.json";
         private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        // Lê todos os alunos do arquivo JSON
+        // Lê alunos do arquivo JSON
         public List<Aluno> listarAlunos() {
             List<Aluno> alunos = new ArrayList<>();
-            try (Reader reader = new FileReader(CAMINHO_ARQUIVO)) {
+            try (Reader reader = new FileReader(caminho)) {
                 Type tipoLista = new TypeToken<List<Aluno>>() {}.getType();
                 alunos = gson.fromJson(reader, tipoLista);
                 if (alunos == null) {
                     alunos = new ArrayList<>();
                 }
             } catch (FileNotFoundException e) {
-                // Arquivo ainda não existe, retorna lista vazia
+                // se o arquivo ainda não existe, retorna lista vazia
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -33,11 +34,11 @@ public class AlunoDAO {
         // Salva a lista de alunos no arquivo JSON
         private void salvarAlunos(List<Aluno> alunos) {
             try {
-                File arquivo = new File(CAMINHO_ARQUIVO);
+                File arquivo = new File(caminho);
                 File diretorio = arquivo.getParentFile();
 
                 if (diretorio != null && !diretorio.exists()) {
-                    diretorio.mkdirs(); // Cria o diretório 'data'
+                    diretorio.mkdirs(); // Aqui vai criar a pasta, se não tiver um
                 }
 
                 try (Writer writer = new FileWriter(arquivo)) {
@@ -49,8 +50,8 @@ public class AlunoDAO {
             }
         }
 
-        // Adiciona um novo aluno
-        public void adicionarAluno(Aluno aluno) {
+        // Adiciona novo aluno
+        public void inserir(Aluno aluno) {
             List<Aluno> alunos = listarAlunos();
             alunos.add(aluno);
             salvarAlunos(alunos);
@@ -63,9 +64,11 @@ public class AlunoDAO {
                 if (alunos.get(i).getId() == alunoAtualizado.getId()) {
                     alunos.set(i, alunoAtualizado);
                     salvarAlunos(alunos);
-                    return true;
+                    break;
                 }
+                return true;
             }
+            salvarAlunos(alunos);
             return false;
         }
 
@@ -79,7 +82,7 @@ public class AlunoDAO {
             return removido;
         }
 
-        // Busca um aluno pelo id
+        // Busca pelo id
         public Aluno buscarAlunoPorId(int id) {
             for (Aluno aluno : listarAlunos()) {
                 if (aluno.getId() == id) {

@@ -13,7 +13,7 @@ public class AlunoController {
         }
 
         public void adicionarAluno(Aluno aluno) {
-            alunoDAO.adicionarAluno(aluno);
+            alunoDAO.inserir(aluno);
         }
 
         public List<Aluno> listarAlunos() {
