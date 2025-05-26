@@ -41,7 +41,7 @@ public class CoordenadorView {
         int telefone = scannerPromptInt("Telefone: ");
         String email = scannerPrompt("Email: ");
         String login = scannerPrompt("Login: ");
-        System.out.println(controller.cadastrarUsuario(id, nome, CPF, endereco, telefone, email, login));
+        System.out.println(controller.cadastrarCoordenador(id, nome, CPF, endereco, telefone, email, login));
     }
     private void atualizar() {
         int id = scannerPromptInt("Cadastrar ID: ");
@@ -51,15 +51,15 @@ public class CoordenadorView {
         int telefone = scannerPromptInt("Novo Telefone: ");
         String email = scannerPrompt("Novo Email: ");
         String login = scannerPrompt("Novo Login: ");
-        System.out.println(controller.atualizarUsuario(id, nome, CPF, endereco, telefone, email, login));
+        System.out.println(controller.atualizarCoordenador(id, nome, CPF, endereco, telefone, email, login));
     }
     private void remover(){
         int id = scannerPromptInt("ID: ");
-        System.out.println(controller.removerUsuario(id));
+        System.out.println(controller.removerCoordenador(id));
     }
     private void exibir(){
         System.out.println("--- Professor ---");
-        for (Professor p : controller.listarProfessores()){
+        for (Professor p : controller.listarCoordenadores()){
             System.out.printf("ID: %d | Nome: %s | CPF: %d | Endereço: %s | Telefone: %d | Email: %s | Login: %s", p.getId(), p.getNome(), p.getCPF(), p.getEndereço(), p.getTelefone(), p.getEmail(), p.getLogin() );
         }
     }
