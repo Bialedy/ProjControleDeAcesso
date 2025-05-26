@@ -35,27 +35,27 @@ public class ProfessorView {
         } while (!opcao.equals("0"));
     }
     private void cadastrar() {
-        String id = scannerPromptInt("Cadastrar ID: ");
+        int id = scannerPromptInt("Cadastrar ID: ");
         String nome = scannerPrompt("Nome: ");
-        String CPF = scannerPrompt("CPF: ");
+        int CPF = scannerPromptInt("CPF: ");
         String endereco = scannerPrompt("Endereço: ");
-        String telefone = scannerPrompt("Telefone: ");
+        int telefone = scannerPromptInt("Telefone: ");
         String email = scannerPrompt("Email: ");
         String login = scannerPrompt("Login: ");
         System.out.println(controller.cadastrarUsuario(id, nome, CPF, endereco, telefone, email, login));
     }
     private void atualizar() {
-        String id = scannerPromptInt("Cadastrar ID: ");
+        int id = scannerPromptInt("Cadastrar ID: ");
         String nome = scannerPrompt("Novo nome: ");
-        String CPF = scannerPrompt("Novo CPF: ");
+        int CPF = scannerPromptInt("Novo CPF: ");
         String endereco = scannerPrompt("Novo Endereço: ");
-        String telefone = scannerPrompt("Novo Telefone: ");
+        int telefone = scannerPromptInt("Novo Telefone: ");
         String email = scannerPrompt("Novo Email: ");
         String login = scannerPrompt("Novo Login: ");
-        System.out.println(controller.cadastrarUsuario(id, nome, CPF, endereco, telefone, email, login));
+        System.out.println(controller.atualizarUsuario(id, nome, CPF, endereco, telefone, email, login));
     }
     private void remover(){
-        int id = scanner.nextInt();
+        int id = scannerPromptInt("ID: ");
         System.out.println(controller.removerUsuario(id));
     }
     private void exibir(){
