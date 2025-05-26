@@ -25,7 +25,7 @@ public class AQVView {
             switch (opcao) {
                 case "1" -> cadastrar();
                 case "2" -> atualizar();
-                case "3" -> deletar()
+                case "3" -> deletar();
                 case "4" -> exibir();
                 case "0" -> System.out.println("Voltar");
                 default -> System.out.println("Erro");
@@ -35,14 +35,27 @@ public class AQVView {
     }
 
     private void cadastrar() {
-        int
+        String id = scannerPromptInt("ID: ");
+        String nome = scannerPrompt("Nome da AQV: ");
+        String CPF = ScannerPromptString("CPF: ");
+        String endereço = scannerPromptString("Endereço: ");
+        String email = scannerPromptString("Email: ");
+        String login = scannerPromptString("Login AQV: ");
+        String senha = scannerPromptString("Senha: ");
+        System.out.println(controller.cadastrarAQV(id, nome, CPF, endereço, email, login,senha));
 
     }
 
+
     private void atualizar() {
-        int id = scannerPromptInt("");
-        String ocorrencia  = scannerPrompt("");
-        System.out.println(controller.atualizarocorrencia(id,ocorrencia));
+        String id = scannerPromptInt("Novo ID: ");
+        int nome = scannerPromptInt("Novo nome: ");
+        String CPF = ScannerPromptString("Novo CPF: ");
+        String endereço = scannerPromptString("Novo Endereço: ");
+        String email = scannerPromptString("Novo Email: ");
+        String login = scannerPromptString("Novo Login AQV: ");
+        String senha = scannerPromptString("Novo Senha: ");
+        System.out.println(controller.atualizarAQV(id, nome, CPF, endereço, email, login,senha));
 
     }
 
@@ -51,8 +64,8 @@ public class AQVView {
     }
 
     private void exibir() {
-        for(AQV : controller.exibirAQV());
-        System.out.printf("ID: %d | Ocorrencia: ");
+        for(AQV : controller.exibirAQV(id, nome, CPF, endereço, email, login,senha));
+        System.out.printf("ID: %d | CPF: %d | endereço: %d | email: %d | Login: %d | senha: %d");
         h.getid(), h.get();
     }
 
