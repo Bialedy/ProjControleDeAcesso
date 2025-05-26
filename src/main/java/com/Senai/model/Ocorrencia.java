@@ -1,21 +1,30 @@
 package com.Senai.model;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-import java.util.Date;
-import java.util.Timer;
-
-public class Ocorrencias {
+public class Ocorrencia {
+    private int id;
     private String tipoOcorrencia;
     private String nomeOcorrencia;
-    private Date diaOcorrencia;
-    private Timer horaOcorrencia;
+    private String diaOcorrencia;
+    private String horaOcorrencia;
     private int idAluno;
 
-    public Ocorrencias(String tipoOcorrencia, String nomeOcorrencia, Date diaOcorrencia, Timer horaOcorrencia, int idAluno) {
+    public Ocorrencia(int id, String tipoOcorrencia, String nomeOcorrencia, String diaOcorrencia, String horaOcorrencia, int idAluno) {
+        this.id = id;
         this.tipoOcorrencia = tipoOcorrencia;
         this.nomeOcorrencia = nomeOcorrencia;
         this.diaOcorrencia = diaOcorrencia;
         this.horaOcorrencia = horaOcorrencia;
         this.idAluno = idAluno;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTipoOcorrencia() {
@@ -34,19 +43,19 @@ public class Ocorrencias {
         this.nomeOcorrencia = nomeOcorrencia;
     }
 
-    public Date getDiaOcorrencia() {
+    public String getDiaOcorrencia() {
         return diaOcorrencia;
     }
 
-    public void setDiaOcorrencia(Date diaOcorrencia) {
+    public void setDiaOcorrencia(String diaOcorrencia) {
         this.diaOcorrencia = diaOcorrencia;
     }
 
-    public Timer getHoraOcorrencia() {
+    public String getHoraOcorrencia() {
         return horaOcorrencia;
     }
 
-    public void setHoraOcorrencia(Timer horaOcorrencia) {
+    public void setHoraOcorrencia(String horaOcorrencia) {
         this.horaOcorrencia = horaOcorrencia;
     }
 
@@ -60,12 +69,14 @@ public class Ocorrencias {
 
     @Override
     public String toString() {
-        return "Ocorrencias{" +
-                "tipoOcorrencia='" + tipoOcorrencia + '\'' +
+        return "Ocorrencia{" +
+                "id=" + id +
+                ", tipoOcorrencia='" + tipoOcorrencia + '\'' +
                 ", nomeOcorrencia='" + nomeOcorrencia + '\'' +
-                ", diaOcorrencia=" + diaOcorrencia +
-                ", horaOcorrencia=" + horaOcorrencia +
+                ", diaOcorrencia='" + diaOcorrencia + '\'' +
+                ", horaOcorrencia='" + horaOcorrencia + '\'' +
                 ", idAluno=" + idAluno +
                 '}';
     }
 }
+

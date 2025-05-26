@@ -29,10 +29,19 @@ public class Aluno extends Usuario {
         this.idCartaoRfid = idCartaoRfid;
     }
 
+
     @Override
     public String toString() {
         return "Aluno{" +
-                "matricula=" + matricula +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", CPF=" + CPF +
+                ", endereco='" + endereco + '\'' +
+                ", telefone=" + telefone +
+                ", email='" + email + '\'' +
+                ", login='" + login + '\'' +
+                ", senha='" + senha + '\'' +
+                ", matricula=" + matricula +
                 ", idCartaoRfid='" + idCartaoRfid + '\'' +
                 '}';
     }
