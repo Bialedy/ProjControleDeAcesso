@@ -22,19 +22,19 @@ public class SistemaJustificativas {
 
                 switch (opcao) {
                     case 1:
-                        System.out.print("ID do aluno: ");
-                        int id = scanner.nextInt();
-
                         System.out.print("Nome do aluno: ");
                         String nome = scanner.nextLine();
 
-                        System.out.print("Data (dd/mm/aaaa): ");
+                        System.out.print("ID do aluno: ");
+                        int id = scanner.nextInt();
+
+                        System.out.print("Data (dd/mm/aaaa):");
                         String data = scanner.nextLine();
 
-                        System.out.print("Motivo do atraso: ");
+                        System.out.print("Motivo do atraso:");
                         String motivo = scanner.nextLine();
 
-                        controller.cadastrar(id, nome, data, motivo);
+                        controller.cadastrar(nome, id, data, motivo);
                         break;
 
                     case 2:

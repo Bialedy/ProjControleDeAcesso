@@ -16,13 +16,13 @@ public class JustificativaDAO {
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
-    public void salvar(Justificativa justificativa) {
-        List<Justificativa> lista = listarTodas();
+    public void adicionar(Justificativa justificativa) {
+        List<Justificativa> lista = listar();
         lista.add(justificativa);
         salvarLista(lista);
     }
 
-    public List<Justificativa> listarTodas() {
+    public List<Justificativa> listar() {
         try (Reader reader = new FileReader(ARQUIVO)) {
             return gson.fromJson(reader, new TypeToken<List<Justificativa>>() {}.getType());
         } catch (FileNotFoundException e) {

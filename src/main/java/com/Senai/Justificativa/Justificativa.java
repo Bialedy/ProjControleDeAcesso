@@ -1,62 +1,26 @@
 package com.Senai.Justificativa;
 
-import com.Senai.Usuario.Usuario;
+import java.io.Serializable;
 
-public class Justificativa extends Usuario {
-        public Justificativa(int id, String nome, String login, String senha) {
-            super(id, nome, login, senha);
+public class Justificativa implements Serializable {
+    private int id;
+    private String nome;
+    private String data;
+    private String motivo;
 
-        }
-
-        @Override
-        public int getId() {
-            return super.getId();
-        }
-
-        @Override
-        public void setId(int id) {
-            super.setId(id);
-        }
-
-        @Override
-        public String getNome() {
-            return super.getNome();
-        }
-
-        @Override
-        public void setNome(String nome) {
-            super.setNome(nome);
-        }
-
-        @Override
-        public String getLogin() {
-            return super.getLogin();
-        }
-
-        @Override
-        public void setLogin(String login) {
-            super.setLogin(login);
-        }
-
-        @Override
-        public String getSenha() {
-            return super.getSenha();
-        }
-
-        @Override
-        public void setSenha(String senha) {
-            super.setSenha(senha);
-        }
-
-        @Override
-        public String toString() {
-            return "SistemaJustificativa{" +
-                    "id=" + id +
-                    ", nome='" + nome + '\'' +
-                    ", login='" + login + '\'' +
-                    ", senha='" + senha + '\'' +
-                    '}';
-        }
-
-
+    public Justificativa(int id, String nome, String data, String motivo) {
+        this.id = id;
+        this.nome = nome;
+        this.data = data;
+        this.motivo = motivo;
     }
+
+    public int getId() { return id; }
+    public String getNome() { return nome; }
+    public String getData() { return data; }
+    public String getMotivo() { return motivo; }
+
+    public String toString() {
+        return "ID: " + id + ", Nome: " + nome + ", Data: " + data + ", Motivo: " + motivo;
+    }
+}
