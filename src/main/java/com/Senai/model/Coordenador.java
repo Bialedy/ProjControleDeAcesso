@@ -3,51 +3,22 @@ package com.Senai.model;
 import com.Senai.Usuario.Usuario;
 
 public class Coordenador extends Usuario {
-    private String criar;
-    private String atualizar;
-    private String deletar;
-    private String exibir;
-
-    public Coordenador(int id, String nome, int CPF, String endereço, int telefone, String email, String login, String senha, String criar, String atualizar, String deletar, String exibir) {
+    public Coordenador(int id, String nome, int CPF, String endereço, int telefone, String email, String login, String senha) {
         super(id, nome, CPF, endereço, telefone, email, login, senha);
-        this.criar = criar;
-        this.atualizar = atualizar;
-        this.deletar = deletar;
-        this.exibir = exibir;
+
     }
 
-    public String getCriar() {
-        return criar;
+    @Override
+    public String toString() {
+        return "Coordenador{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", CPF=" + CPF +
+                ", endereço='" + endereço + '\'' +
+                ", telefone=" + telefone +
+                ", email='" + email + '\'' +
+                ", login='" + login + '\'' +
+                ", senha='" + senha + '\'' +
+                '}';
     }
-
-    public void setCriar(String criar) {
-        this.criar = criar;
-    }
-
-    public String getAtualizar() {
-        return atualizar;
-    }
-
-    public void setAtualizar(String atualizar) {
-        this.atualizar = atualizar;
-    }
-
-    public String getDeletar() {
-        return deletar;
-    }
-
-    public void setDeletar(String deletar) {
-        this.deletar = deletar;
-    }
-
-    public String getExibir() {
-        return exibir;
-    }
-
-    public void setExibir(String exibir) {
-        this.exibir = exibir;
-    }
-
-
-
 }

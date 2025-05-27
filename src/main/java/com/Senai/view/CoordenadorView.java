@@ -1,49 +1,66 @@
 package com.Senai.view;
 
+import com.Senai.controller.CoordenadorController;
+import com.Senai.model.Coordenador;
 import com.Senai.model.Professor;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class CoordenadorView {
 
-    private final Scanner scanner = new Scanner(System.in);
-    private final UsuarioController controller = new UsuarioController();
+    private static  final Scanner scanner = new Scanner(System.in);
+    private static final CoordenadorController controller = new CoordenadorController();
 
-    public void menu(){
+    public static void main(String[] args){
         String opcao;
-        String menuUsuario = """
+        String menuCoordenador = """
                 
-                --- MENU DE USUÁRIOS ---
-                1. Cadastrar usuário
-                2. Atualizar usuário
-                3. Remover usuário
-                4. Exibir usuário
+                --- MENU DE COORDENADORES ---
+                1. Cadastrar coordenadores
+                2. Atualizar coordenadores
+                3. Remover coordenadores
+                4. Exibir coordenadores
                 0. Voltar
                 """;
-        do{ System.out.println(menuUsuario);
+        do{ System.out.println(menuCoordenador);
             opcao = scanner.nextLine();
 
             switch (opcao){
-                case "1" -> cadastrar();
-                case "2" -> atualizar();
-                case "3" -> remover();
-                case "4" -> exibir();
+                case "1" -> listarCoordenadores();
+                case "2" -> cadastrarCoordenador();
+                case "3" -> atualizarCoordenador();
+                case "4" -> removerCoordenador();
                 case "0" -> System.out.println("Voltando...");
                 default -> System.out.println("Opção inválida.");
             }
         } while (!opcao.equals("0"));
     }
-    private void cadastrar() {
+    private static void cadastrarCoordenador() {
         int id = scannerPromptInt("Cadastrar ID: ");
         String nome = scannerPrompt("Nome: ");
-        int CPF = scannerPromptInt("CPF: ");
+        int cpf = scannerPromptInt("CPF: ");
         String endereco = scannerPrompt("Endereço: ");
         int telefone = scannerPromptInt("Telefone: ");
         String email = scannerPrompt("Email: ");
         String login = scannerPrompt("Login: ");
-        System.out.println(controller.cadastrarCoordenador(id, nome, CPF, endereco, telefone, email, login));
+        String senha = scannerPrompt("Senha: ");
+
+        Coordenador novoCoordenador = new Coordenador(id, nome, cpf, endereco, telefone, email, login, senha);
+        controller.adicionarCoordenador(novoCoordenador);
+        System.out.println("Coordenador cadastrado com sucesso.");
     }
-    private void atualizar() {
+    private static void listarCoordenadores() {
+        List<Coordenador> coordenadores = controller.listarCoordenadores();
+        if (coordenadores.isEmpty()) {
+            System.out.println("Nenhum aluno cadastrado.");
+        } else {
+            for (Coordenador coordenador : coordenadores) {
+                System.out.println(coordenador);
+            }
+        }
+    }
+    private static void atualizarCoordenador() {
         int id = scannerPromptInt("Cadastrar ID: ");
         String nome = scannerPrompt("Novo nome: ");
         int CPF = scannerPromptInt("Novo CPF: ");
@@ -51,24 +68,20 @@ public class CoordenadorView {
         int telefone = scannerPromptInt("Novo Telefone: ");
         String email = scannerPrompt("Novo Email: ");
         String login = scannerPrompt("Novo Login: ");
-        System.out.println(controller.atualizarCoordenador(id, nome, CPF, endereco, telefone, email, login));
+        String senha = scannerPrompt("Senha: ");
+        System.out.println(controller.atualizarCoordenador(id, nome, CPF, endereco, telefone, email, login, senha));
     }
-    private void remover(){
+    private static void removerCoordenador(){
         int id = scannerPromptInt("ID: ");
         System.out.println(controller.removerCoordenador(id));
     }
-    private void exibir(){
-        System.out.println("--- Professor ---");
-        for (Professor p : controller.listarCoordenadores()){
-            System.out.printf("ID: %d | Nome: %s | CPF: %d | Endereço: %s | Telefone: %d | Email: %s | Login: %s", p.getId(), p.getNome(), p.getCPF(), p.getEndereço(), p.getTelefone(), p.getEmail(), p.getLogin() );
-        }
-    }
-    private String scannerPrompt(String msg) {
+
+    private static String scannerPrompt(String msg) {
         System.out.print(msg);
         return scanner.nextLine();
     }
 
-    private int scannerPromptInt(String msg) {
+    private static int scannerPromptInt(String msg) {
         System.out.print(msg);
         return Integer.parseInt(scanner.nextLine());
 
