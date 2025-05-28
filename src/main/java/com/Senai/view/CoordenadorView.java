@@ -53,7 +53,7 @@ public class CoordenadorView {
     private static void listarCoordenadores() {
         List<Coordenador> coordenadores = controller.listarCoordenadores();
         if (coordenadores.isEmpty()) {
-            System.out.println("Nenhum aluno cadastrado.");
+            System.out.println("Nenhum coordenador cadastrado.");
         } else {
             for (Coordenador coordenador : coordenadores) {
                 System.out.println(coordenador);

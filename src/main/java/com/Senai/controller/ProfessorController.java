@@ -7,12 +7,13 @@ import java.util.List;
 
 public class ProfessorController {
 
-    public ProfessorDAO professorDAO;
+    private ProfessorDAO professorDAO;
 
     public ProfessorController() {
         this.professorDAO = new ProfessorDAO();
     }
-    public void cadastrarProfessor(Professor professor) {
+
+    public boolean cadastrarProfessor(Professor professor) {
         professorDAO.inserirProfessor(professor);
         return false;
     }
@@ -21,16 +22,17 @@ public class ProfessorController {
         return professorDAO.listarProfessores();
     }
 
-
-    public void atualizarProfessor(int id, String nome, int cpf, String endereco, int telefone, String email, String login, String senha) {
-        professorDAO.atualizarProfessor(professor);
+    public boolean atualizarProfessor(int id, String nome,int cpf, String endereco, int telefone, String email, String login, String senha, String disciplina) {
+        Professor professor = new Professor(id, nome, cpf, endereco, telefone, email, login, senha, disciplina);
+        return professorDAO.atualizarProfessor(professor);
     }
 
     public boolean removerProfessor(int id) {
-
         return professorDAO.removerProfessor(id);
     }
 
     public void adicionarProfessor(Professor novoProfessor) {
+        professorDAO.inserirProfessor(novoProfessor);
     }
 }
+
