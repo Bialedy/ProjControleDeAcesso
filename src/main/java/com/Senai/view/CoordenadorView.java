@@ -17,10 +17,10 @@ public class CoordenadorView {
         String menuCoordenador = """
                 
                 --- MENU DE COORDENADORES ---
-                1. Cadastrar coordenadores
-                2. Atualizar coordenadores
-                3. Remover coordenadores
-                4. Exibir coordenadores
+                1. Listar coordenadores
+                2. Cadastrar coordenadores
+                3. Atualizar coordenadores
+                4. Remover coordenadores 
                 0. Voltar
                 """;
         do{ System.out.println(menuCoordenador);
@@ -36,6 +36,16 @@ public class CoordenadorView {
             }
         } while (!opcao.equals("0"));
     }
+    private static void listarCoordenadores() {
+        List<Coordenador> coordenadores = controller.listarCoordenadores();
+        if (coordenadores.isEmpty()) {
+            System.out.println("Nenhum coordenador cadastrado.");
+        } else {
+            for (Coordenador coordenador : coordenadores) {
+                System.out.println(coordenador);
+            }
+        }
+    }
     private static void cadastrarCoordenador() {
         int id = scannerPromptInt("Cadastrar ID: ");
         String nome = scannerPrompt("Nome: ");
@@ -50,18 +60,9 @@ public class CoordenadorView {
         controller.adicionarCoordenador(novoCoordenador);
         System.out.println("Coordenador cadastrado com sucesso.");
     }
-    private static void listarCoordenadores() {
-        List<Coordenador> coordenadores = controller.listarCoordenadores();
-        if (coordenadores.isEmpty()) {
-            System.out.println("Nenhum coordenador cadastrado.");
-        } else {
-            for (Coordenador coordenador : coordenadores) {
-                System.out.println(coordenador);
-            }
-        }
-    }
+
     private static void atualizarCoordenador() {
-        int id = scannerPromptInt("Cadastrar ID: ");
+        int id = scannerPromptInt("Cadastrar novo ID: ");
         String nome = scannerPrompt("Novo nome: ");
         int CPF = scannerPromptInt("Novo CPF: ");
         String endereco = scannerPrompt("Novo Endereço: ");
@@ -73,7 +74,14 @@ public class CoordenadorView {
     }
     private static void removerCoordenador(){
         int id = scannerPromptInt("ID: ");
-        System.out.println(controller.removerCoordenador(id));
+        boolean sucesso = controller.removerCoordenador(id);
+
+        if (sucesso) {
+            System.out.println("Coordenador removido com sucesso.");
+        } else {
+            System.out.println("Coordenador com ID " + id + " não encontrado.");
+        }
+
     }
 
     private static String scannerPrompt(String msg) {
