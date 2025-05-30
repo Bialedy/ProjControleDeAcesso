@@ -1,4 +1,4 @@
-package com.Senai.Curso;
+package com.Senai.controller;
 
 public class CursoController {
 }

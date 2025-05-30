@@ -1,4 +1,4 @@
-package com.Senai.Turma;
+package com.Senai.controller;
 
 public class TurmaController {
 }
