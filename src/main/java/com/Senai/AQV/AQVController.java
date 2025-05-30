@@ -22,11 +22,11 @@ public class AQVController {
         return aqvdao.BuscarPorId(id);
     }
 
-    public List<AQV> exibirAQV() {
-        return aqvdao.exibirAQV();
+    public List<AQV> exibirAQV(AQV aqv) {
+        return aqvdao.exibirAQV(AQV);
     }
 
-    public boolean deletarAQV(int id) {
+    public deletarAQV(int id) {
         return aqvdao.deletarAQV(id);
     }
 

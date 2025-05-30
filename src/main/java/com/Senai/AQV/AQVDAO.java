@@ -55,8 +55,8 @@ public class AQVDAO {
             salvar(aqvs);
         }
 
-        public void deletar() {
-            aqvs.removeIf(a -> a.getId() == id);
+        public void deletar(AQV aqv) {
+            aqvs.removeIf(a -> a.getId() == aqv.getId());
             salvar(aqvs);
         }
 

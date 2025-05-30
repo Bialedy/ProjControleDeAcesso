@@ -60,7 +60,14 @@ public class AQVView {
     }
 
     private void deletar() {
-
+        String id = scannerPromptInt("Deletar ID: ");
+        int nome = scannerPromptInt("Deletar nome: ");
+        String CPF = ScannerPromptString("Deletar CPF: ");
+        String endereço = scannerPromptString("Deletar Endereço: ");
+        String email = scannerPromptString("Deletar Email: ");
+        String login = scannerPromptString("Deletar Login AQV: ");
+        String senha = scannerPromptString("Deletar Senha: ");
+        System.out.println(controller.deletarAQV(id, nome, CPF, endereço, email, login,senha));
     }
 
     private void exibir() {
