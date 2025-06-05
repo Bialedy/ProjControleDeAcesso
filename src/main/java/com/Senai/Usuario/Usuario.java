@@ -10,7 +10,7 @@ public abstract class Usuario {
     protected String login;
     protected String senha;
 
-    public Usuario(int id, String nome,int CPF, String endereço, int telefone, String email, String login, String senha) {
+    public Usuario(int id, String nome, String endereço, String email) {
         this.id = id;
         this.nome = nome;
         this.CPF = CPF;
@@ -84,5 +84,7 @@ public abstract class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+
 
 }
