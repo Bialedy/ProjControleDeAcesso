@@ -1,6 +1,7 @@
 package com.Senai.AQV;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.FileReader;
@@ -12,16 +13,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class AQVDAO {
-    private final String caminho = "aqv.gson";
-        private final Gson gson = new Gson();
-        private final List<AQV> aqvs;
-
-        public AQVDAO(){
-            aqvs = carregar();
-        }
+    private static final String caminho = "aqv.gson";
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 
-        private List<AQV> carregar() {
+        public List<AQV> carregar() {
             try (FileReader reader = new FileReader(caminho)) {
                 Type listType = new TypeToken<List<AQV>>() {}.getType();
                 return gson.fromJson(reader, listType);
@@ -30,46 +26,58 @@ public class AQVDAO {
             }
         }
 
-        private void salvar(List<AQV> lista) {
+        public boolean salvar(List<AQV> lista) {
             try (FileWriter writer = new FileWriter(caminho)) {
                 gson.toJson(lista, writer);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            return false;
         }
 
         public void cadastrar(AQV aqv) {
-            int novoId = aqvs.stream().mapToInt(AQV::getId).max().orElse(0) + 1;
-            AQV.setId(novoId);
-            aqvs.add(aqv);
-            salvar(aqvs);
+            List<AQV> aqv = listarTodos();
+            aqv.add(AQV);
+            salvar(aqv);
         }
 
-        public void atualizar(AQV aqv) {
-            for (int i = 0; i < aqvs.size(); i++) {
-                if (aqvs.get(i).getId() == AQV.getId()) {
-                    aqvs.set(i, aqv);
+        public boolean atualizar(AQV aqv) {
+            List<AQV> aqv = listarTodos();
+            for (int i = 0; i < aqv.size(); i++) {
+                if (aqv.get(i).getId() ==  id) {
+                    aqv.set(i, aqv);
+                    salvar(aqv);
                     break;
                 }
+                return true;
             }
-            salvar(aqvs);
+            salvar(aqv);
+            return false;
         }
 
-        public void deletar(AQV aqv) {
-            aqvs.removeIf(a -> a.getId() == aqv.getId());
-            salvar(aqvs);
+
+        public boolean deletar(int id) {
+            List<AQV> aqv = listarTodos();
+            boolean remove = aqv.removeIf(aqv -> aqv.getId() == id);
+            if (remove) {
+                salvar(aqv);
+            }
+            return remove;
         }
+
+
 
         public Optional<AQV> BuscarPorId(int id) {
-            return aqvs.stream().filter(a -> a.getId() == id).findFirst();
+            return aqv.stream().filter(a -> a.getId() == id).findFirst();
         }
 
         public Optional<AQV> buscarPorLogin(String login) {
-            return aqvs.stream().filter(a -> a.getLogin().equals(login)).findFirst();
+            return aqv.stream().filter(a -> a.getLogin().equals(login)).findFirst();
         }
 
         public List<AQV> listarTodos() {
             return aqvs;
         }
-    
+
+
 }

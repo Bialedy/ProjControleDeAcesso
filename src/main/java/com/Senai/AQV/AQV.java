@@ -10,6 +10,17 @@ public class AQV extends Usuario {
 
     @Override
     public String toString() {
-        return "AQV{}";
+        return "AQV{} \" +\n" +
+                "                \"id=\" + id +\n" +
+                "                \", nome='\" + nome + '\\'' +\n" +
+                "                \", CPF=\" + CPF +\n" +
+                "                \", endereço='\" + endereço + '\\'' +\n" +
+                "                \", telefone=\" + telefone +\n" +
+                "                \", email='\" + email + '\\'' +\n" +
+                "                \", login='\" + login + '\\'' +\n" +
+                "                \", senha='\" + senha + '\\'' +\n" +
+                "                '}';\n";
     }
+
+
 }

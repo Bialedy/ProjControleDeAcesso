@@ -1,33 +1,37 @@
 package com.Senai.AQV;
 
-import java.util.List;
+import com.Senai.AQV.AQV;
+import com.Senai.AQV.AQVDAO;
+
 
 public class AQVController {
 
-    private AQVDAO aqvdao;
+    public AQVDAO aqvdao;
 
     public AQVController(){
         this.aqvdao = new AQVDAO();
     }
 
-    public void cadastrarAQV(AQV aqv){
+    public boolean cadastrar(AQV aqv){
         aqvdao.cadastrar(aqv);
+        return false;
     }
 
-    public void atualizarAQV(AQV aqv){
+    public void atualizar(AQV aqv){
         aqvdao.atualizar(aqv);
     }
 
-    public BuscarPorId(int id){
-        return aqvdao.BuscarPorId(id);
+    public boolean exibir(AQV aqv) {
+        aqvdao.equals(aqv);
+        return false;
     }
 
-    public List<AQV> exibirAQV(AQV aqv) {
-        return aqvdao.exibirAQV(AQV);
+    public boolean deletar(int id) {
+        return aqvdao.deletar(id);
     }
 
-    public deletarAQV(int id) {
-        return aqvdao.deletarAQV(id);
+    public AQVController(int id){
+        aqvdao.BuscarPorId(id);
     }
 
 

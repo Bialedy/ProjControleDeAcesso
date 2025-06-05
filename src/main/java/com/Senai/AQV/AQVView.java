@@ -1,11 +1,12 @@
 package com.Senai.AQV;
 
+
 import java.util.Scanner;
 
 
 public class AQVView {
-    private final Scanner scanner = new Scanner(System.in);
-    private final AQVController controller = new AQVController();
+    public static final Scanner scanner = new Scanner(System.in);
+    public static final AQVController controller = new AQVController();
 
     public void menu() {
         String opcao;
@@ -37,36 +38,37 @@ public class AQVView {
     private void cadastrar() {
         String id = scannerPromptInt("ID: ");
         String nome = scannerPrompt("Nome da AQV: ");
-        String CPF = ScannerPromptString("CPF: ");
-        String endereço = scannerPromptString("Endereço: ");
-        String email = scannerPromptString("Email: ");
-        String login = scannerPromptString("Login AQV: ");
-        String senha = scannerPromptString("Senha: ");
+        String CPF = ScannerPrompt("CPF: ");
+        String endereço = scannerPrompt("Endereço: ");
+        String email = scannerPrompt("Email: ");
+        String login = scannerPrompt("Login AQV: ");
+        String senha = scannerPrompt("Senha: ");
         System.out.println(controller.cadastrarAQV(id, nome, CPF, endereço, email, login,senha));
 
     }
 
 
+
     private void atualizar() {
         String id = scannerPromptInt("Novo ID: ");
         int nome = scannerPromptInt("Novo nome: ");
-        String CPF = ScannerPromptString("Novo CPF: ");
-        String endereço = scannerPromptString("Novo Endereço: ");
-        String email = scannerPromptString("Novo Email: ");
-        String login = scannerPromptString("Novo Login AQV: ");
-        String senha = scannerPromptString("Novo Senha: ");
+        String CPF = ScannerPrompt("Novo CPF: ");
+        String endereço = ScannerPrompt("Novo Endereço: ");
+        String email = scannerPrompt("Novo Email: ");
+        String login = scannerPrompt("Novo Login AQV: ");
+        String senha = scannerPrompt("Novo Senha: ");
         System.out.println(controller.atualizarAQV(id, nome, CPF, endereço, email, login,senha));
 
     }
 
     private void deletar() {
-        String id = scannerPromptInt("Deletar ID: ");
+        String id = scannerPrompt("Deletar ID: ");
         int nome = scannerPromptInt("Deletar nome: ");
-        String CPF = ScannerPromptString("Deletar CPF: ");
-        String endereço = scannerPromptString("Deletar Endereço: ");
-        String email = scannerPromptString("Deletar Email: ");
-        String login = scannerPromptString("Deletar Login AQV: ");
-        String senha = scannerPromptString("Deletar Senha: ");
+        String CPF = ScannerPrompt("Deletar CPF: ");
+        String endereço = scannerPrompt("Deletar Endereço: ");
+        String email = scannerPrompt("Deletar Email: ");
+        String login = scannerPrompt("Deletar Login AQV: ");
+        String senha = scannerPrompt("Deletar Senha: ");
         System.out.println(controller.deletarAQV(id, nome, CPF, endereço, email, login,senha));
     }
 
