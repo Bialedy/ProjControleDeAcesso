@@ -1,5 +1,6 @@
 package com.Senai.view;
 
+import com.Senai.Usuario.UsuarioView;
 import com.senai.model.Administrador;
 import com.senai.model.Aluno;
 import com.senai.model.Professor;
@@ -107,14 +108,14 @@ public class MenuPrincipal {
         executarMenu("""
                     ===== MENU ALUNO =====
                     1. Visualizar Horários
-                    2. Mudar RFID
+                    2. Mudar ID
                     3. Deslogar
                     0. Sair
                     """,
                 opcao -> {
             switch (opcao) {
                 case "1" -> horarioView.listar();
-                case "2" -> usuarioView.mudarRfid(aluno);
+                case "2" -> usuarioView.mudarid(aluno);
                 case "3" -> logar();
                 case "0" -> {
                     System.out.println("Saindo...");

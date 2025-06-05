@@ -58,7 +58,6 @@ public class UsuarioController {
 
     public String atribuirRfid(int id, String rfid) {
         return alunoDAO.buscarPorId(id).map(aluno -> {
-            aluno.setIdCartaoRfid(rfid);
             alunoDAO.atualizar(aluno);
             return "RFID atribuído com sucesso.";
         }).orElse("Aluno não encontrado.");

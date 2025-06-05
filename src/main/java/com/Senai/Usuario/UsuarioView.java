@@ -77,15 +77,15 @@ public class UsuarioView {
         }
     }
 
-    public void atribuirRfid() {
+    public void atribuiId() {
         int id = scannerPromptInt("ID do aluno: ");
-        String rfid = scannerPrompt("Novo RFID: ");
-        System.out.println(controller.atribuirRfid(id, rfid));
+        String rfid = scannerPrompt("Novo ID: ");
+        System.out.println(controller.atribuirId(id, rfid));
     }
 
     public void mudarRfid(Aluno aluno) {
         String rfid = scannerPrompt("Novo RFID: ");
-        System.out.println(controller.atribuirRfid(aluno.getId(), rfid));
+        System.out.println(controller.atribuirId(aluno.getId(), rfid));
     }
 
     private String scannerPrompt(String msg) {

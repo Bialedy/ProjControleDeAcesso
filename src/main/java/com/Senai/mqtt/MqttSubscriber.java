@@ -1,5 +1,6 @@
 package com.Senai.mqtt;
 
+import com.Senai.Justificativa.Justificativa;
 import com.senai.controller.ControleDeAcessoController;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -8,7 +9,7 @@ public class MqttSubscriber {
     private static final String BROKER = "tcp://localhost:1883";
     private static final String CLIENT_ID = "ServidorJava";
     private static final String TOPICO = "catraca/rfid";
-    private static final ControleDeAcessoController controller = new ControleDeAcessoController();
+    private static final Justificativa controller = new Justificativa(11, "Julia", "10/20/2005", "onibus");
 
     public static void iniciarMqtt() {
         try {
@@ -16,8 +17,7 @@ public class MqttSubscriber {
             client.connect();
             client.subscribe(TOPICO, (topic, msg) -> {
                 String payload = new String(msg.getPayload());
-                String resposta = controller.processarEntrada(payload);
-                System.out.println(resposta); // este será redirecionado para a view em um próximo passo, se necessário
+                System.out.println();
             });
             System.out.println("Inscrito no tópico MQTT: " + TOPICO);
         } catch (MqttException e) {
