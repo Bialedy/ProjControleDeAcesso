@@ -1,8 +1,5 @@
 package com.Senai.AQV;
 
-import com.Senai.AQV.AQV;
-import com.Senai.AQV.AQVDAO;
-
 
 public class AQVController {
 
@@ -27,11 +24,11 @@ public class AQVController {
     }
 
     public boolean deletar(int id) {
-        return aqvdao.deletar(id);
+        return aqvdao.deletar(id, AQV);
     }
 
     public AQVController(int id){
-        aqvdao.BuscarPorId(id);
+        aqvdao.BuscarPorId(id, AQV);
     }
 
 
