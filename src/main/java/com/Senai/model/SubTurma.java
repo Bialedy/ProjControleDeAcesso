@@ -4,14 +4,24 @@ import java.time.LocalTime;
 import java.util.Arrays;
 
 public class SubTurma {
+    private int id;
     private String nomeTurma;
     private LocalTime horario;
     private Aluno[] listaAlunos;
 
-    public SubTurma(String nomeTurma, LocalTime horario, Aluno[] listaAlunos) {
+    public SubTurma(int id, String nomeTurma, LocalTime horario, Aluno[] listaAlunos) {
+        this.id = id;
         this.nomeTurma = nomeTurma;
         this.horario = horario;
         this.listaAlunos = listaAlunos;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNomeTurma() {
@@ -41,7 +51,8 @@ public class SubTurma {
     @Override
     public String toString() {
         return "SubTurma{" +
-                "nomeTurma='" + nomeTurma + '\'' +
+                "id=" + id +
+                ", nomeTurma='" + nomeTurma + '\'' +
                 ", horario=" + horario +
                 ", listaAlunos=" + Arrays.toString(listaAlunos) +
                 '}';

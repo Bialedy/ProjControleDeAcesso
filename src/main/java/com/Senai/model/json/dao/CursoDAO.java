@@ -9,9 +9,8 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class ProfessorDAO {
+public class CursoDAO {
     private static final String caminho = "curso.json";
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -21,7 +20,7 @@ public class ProfessorDAO {
         try (Reader reader = new FileReader(caminho)) {
             Type tipoLista = new TypeToken<List<Curso>>() {}.getType();
             cursos = gson.fromJson(reader, tipoLista);
-            if (cursos== null) {
+            if (cursos == null) {
                 cursos = new ArrayList<>();
             }
         } catch (FileNotFoundException e) {
@@ -78,6 +77,7 @@ public class ProfessorDAO {
         }
         return removido;
     }
+
     public Curso buscarCursoPorId(int id) {
         for (Curso curso : listarCursos()) {
             if (curso.getId() == id) {

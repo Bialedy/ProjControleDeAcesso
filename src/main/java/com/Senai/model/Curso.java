@@ -3,18 +3,28 @@ package com.Senai.model;
 import java.util.Arrays;
 
 public class Curso {
+    private int id;
     private String nomeCurso;
     private String tipoCurso;
     private int cargaHorariaCurso;
     private int tolerancia;
     private UnidadeCurricular[] listaUnidadesCurriculares;
 
-    public Curso(String nomeCurso, String tipoCurso, int cargaHorariaCurso, int tolerancia, UnidadeCurricular[] listaUnidadesCurriculares) {
+    public Curso(int id, String nomeCurso, String tipoCurso, int cargaHorariaCurso, int tolerancia, UnidadeCurricular[] listaUnidadesCurriculares) {
+        this.id = id;
         this.nomeCurso = nomeCurso;
         this.tipoCurso = tipoCurso;
         this.cargaHorariaCurso = cargaHorariaCurso;
         this.tolerancia = tolerancia;
         this.listaUnidadesCurriculares = listaUnidadesCurriculares;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNomeCurso() {
@@ -60,7 +70,8 @@ public class Curso {
     @Override
     public String toString() {
         return "Curso{" +
-                "nomeCurso='" + nomeCurso + '\'' +
+                "id=" + id +
+                ", nomeCurso='" + nomeCurso + '\'' +
                 ", tipoCurso='" + tipoCurso + '\'' +
                 ", cargaHorariaCurso=" + cargaHorariaCurso +
                 ", tolerancia=" + tolerancia +

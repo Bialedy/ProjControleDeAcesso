@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 public class Turma {
+    private int id;
     private String nomeTurma;
     private String curso;
     private int quantidadeSemestres;
@@ -13,7 +14,8 @@ public class Turma {
     private LocalTime horarioInicio;
     private SubTurma[] listaSubTurmas;
 
-    public Turma(String nomeTurma, String curso, int quantidadeSemestres, String periodo, Date dataInicio, LocalTime horarioInicio, SubTurma[] listaSubTurmas) {
+    public Turma(int id, String nomeTurma, String curso, int quantidadeSemestres, String periodo, Date dataInicio, LocalTime horarioInicio, SubTurma[] listaSubTurmas) {
+        this.id = id;
         this.nomeTurma = nomeTurma;
         this.curso = curso;
         this.quantidadeSemestres = quantidadeSemestres;
@@ -21,6 +23,14 @@ public class Turma {
         this.dataInicio = dataInicio;
         this.horarioInicio = horarioInicio;
         this.listaSubTurmas = listaSubTurmas;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNomeTurma() {
@@ -82,7 +92,8 @@ public class Turma {
     @Override
     public String toString() {
         return "Turma{" +
-                "nomeTurma='" + nomeTurma + '\'' +
+                "id=" + id +
+                ", nomeTurma='" + nomeTurma + '\'' +
                 ", curso='" + curso + '\'' +
                 ", quantidadeSemestres=" + quantidadeSemestres +
                 ", periodo='" + periodo + '\'' +
