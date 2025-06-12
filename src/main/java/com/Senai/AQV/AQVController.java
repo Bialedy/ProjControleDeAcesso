@@ -19,15 +19,15 @@ public class AQVController {
     }
 
     public boolean exibir(AQV aqv) {
-        aqvdao.equals(aqv);
+        aqvdao.exibir(aqv);
         return false;
     }
 
-    public boolean deletar(int id) {
-        return aqvdao.deletar(id, AQV);
+    public boolean deletar (AQV aqv) {
+        return aqvdao.deletar(aqv);
     }
 
-    public AQVController(int id){
+    public AQVController(int id, AQV AQV){
         aqvdao.BuscarPorId(id, AQV);
     }
 

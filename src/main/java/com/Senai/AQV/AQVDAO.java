@@ -14,29 +14,29 @@ public class AQVDAO {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 
-
     public void salvar(AQV aqv) {
-            try {
-                File arquivo = new File(caminho);
-                File diretorio = arquivo.getParentFile();
+        try {
+            File arquivo = new File(caminho);
+            File diretorio = arquivo.getParentFile();
 
-                if (diretorio != null && !diretorio.exists()) {
-                    diretorio.mkdirs();
-                }
-
-                try (Writer writer = new FileWriter(arquivo)) {
-                    gson.toJson(aqv, writer);
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (diretorio != null && !diretorio.exists()) {
+                diretorio.mkdirs();
             }
-        }
 
-    public List<AQV> listar() {
+            try (Writer writer = new FileWriter(arquivo)) {
+                gson.toJson(aqv, writer);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<AQV> exibir(AQV aqv) {
         List<AQV> aqv = new ArrayList<>();
         try (Reader reader = new FileReader(caminho)) {
-            Type tipoLista = new TypeToken<List<AQV>>() {}.getType();
+            Type tipoLista = new TypeToken<List<AQV>>() {
+            }.getType();
             aqv = gson.fromJson(reader, tipoLista);
             if (aqv == null) {
                 aqv = new ArrayList<>();
@@ -51,13 +51,13 @@ public class AQVDAO {
 
 
     public void cadastrar(AQV aqv) {
-        List<AQV> aqvs = listar();
+        List<AQV> aqvs = exibir(aqv);
         aqvs.add(aqv);
         salvar(aqv);
     }
 
     public boolean atualizar(AQV aqv) {
-        List<AQV> aqvs = listar();
+        List<AQV> aqvs = exibir(aqv);
         for (int i = 0; i < aqvs.size(); i++) {
             if (aqvs.get(i).getId() == aqv.getId()) {
                 aqvs.set(i, aqv);
@@ -70,23 +70,22 @@ public class AQVDAO {
         return false;
     }
 
-    public boolean deletar(int id, AQV AQV) {
-        List<AQV> aqvs = listar();
+    public boolean deletar(int id, AQV aqv) {
+        List<AQV> aqvs = exibir(aqv);
         boolean remove = aqvs.removeIf(aqv -> aqv.getId() == id);
         if (remove) {
-            salvar(AQV);
+            salvar(aqv);
         }
         return remove;
     }
 
 
-    public AQV BuscarPorId(int id, AQV AQV) {
-            for (AQV aqv : listar()) {
-                if(aqv.getId() == id) {
-                    return AQV;
-                }
+    public AQV BuscarPorId(int id, AQV aqv) {
+        for (AQV aqv : exibir(aqv)) {
+            if (aqv.getId() == id) {
+                return aqv;
             }
-            return null;
+        }
+        return null;
     }
-
 }
