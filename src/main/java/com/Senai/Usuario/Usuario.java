@@ -1,5 +1,7 @@
 package com.Senai.Usuario;
 
+import java.util.stream.DoubleStream;
+
 public abstract class Usuario {
     protected int id;
     protected String nome;
@@ -25,8 +27,8 @@ public abstract class Usuario {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int Id) {
+        this.id = Id;
     }
 
     public String getNome() {
@@ -85,4 +87,5 @@ public abstract class Usuario {
         this.senha = senha;
     }
 
+    public abstract DoubleStream stream();
 }
