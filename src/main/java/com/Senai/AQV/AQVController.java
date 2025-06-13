@@ -9,13 +9,14 @@ public class AQVController {
         this.aqvdao = new AQVDAO();
     }
 
-    public boolean cadastrar(AQV aqv){
-        aqvdao.cadastrar(aqv);
+    public boolean cadastrar(AQV AQV){
+        aqvdao.cadastrar(AQV);
         return false;
     }
 
-    public void atualizar(AQV aqv){
+    public boolean atualizar(AQV aqv){
         aqvdao.atualizar(aqv);
+        return false;
     }
 
     public boolean exibir(AQV aqv) {
@@ -23,12 +24,13 @@ public class AQVController {
         return false;
     }
 
-    public boolean deletar (AQV aqv) {
-        return aqvdao.deletar(aqv);
+    public boolean deletar (int id,AQV aqv) {
+        aqvdao.deletar(id,aqv);
+        return false;
     }
 
     public AQVController(int id, AQV AQV){
-        aqvdao.BuscarPorId(id, AQV);
+        aqvdao.BuscarPorId(id);
     }
 
 

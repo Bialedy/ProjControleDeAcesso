@@ -3,8 +3,8 @@ package com.Senai.AQV;
 import java.util.Scanner;
 
 public class AQVView {
-    public static final Scanner scanner = new Scanner(System.in);
-    public static final AQVController controller = new AQVController();
+    public final Scanner scanner = new Scanner(System.in);
+    public final AQVController controller = new AQVController();
 
     private String scannerPrompt(String message) {
         System.out.print(message);
@@ -71,23 +71,23 @@ public class AQVView {
         String email = scannerPrompt("Novo Email: ");
         String login = scannerPrompt("Novo Login AQV: ");
         String senha = scannerPrompt("Novo Senha: ");
-        System.out.println(AQVController.atualizar(id, nome, CPF, endereço, email, login,senha));
+        System.out.println(controller.atualizar(id, nome, CPF, endereço, email, login,senha));
 
     }
 
     private void deletar() {
-        String id = scannerPrompt("Deletar ID: ");
-        int nome = scannerPromptInt("Deletar nome: ");
-        String CPF = scannerPrompt("Deletar CPF: ");
+        int id = scannerPromptInt("Deletar ID: ");
+        String nome = scannerPrompt("Deletar nome: ");
+        int CPF = scannerPromptInt("Deletar CPF: ");
         String endereço = scannerPrompt("Deletar Endereço: ");
         String email = scannerPrompt("Deletar Email: ");
         String login = scannerPrompt("Deletar Login AQV: ");
         String senha = scannerPrompt("Deletar Senha: ");
-        System.out.println(controller.deletar(id, AQV));
+        System.out.println(AQVController.deletar());
     }
 
     private void exibir() {
-        for (controller.exibir(id, nome, CPF, endereço, email, login, senha)) {
+        for (AQV aqv : AQVController.exibir()){
             System.out.printf("ID: %d | CPF: %d | endereço: %d | email: %d | Login: %d | senha: %d");
         }
 
