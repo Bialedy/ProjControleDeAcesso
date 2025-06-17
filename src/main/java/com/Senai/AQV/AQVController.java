@@ -1,6 +1,8 @@
 package com.Senai.AQV;
 
 
+import java.util.List;
+
 public class AQVController {
 
     public AQVDAO aqvdao;
@@ -9,29 +11,29 @@ public class AQVController {
         this.aqvdao = new AQVDAO();
     }
 
-    public boolean cadastrar(AQV AQV){
-        aqvdao.cadastrar(AQV);
-        return false;
+    public boolean cadastrar(AQV aqv){
+        return aqvdao.cadastrar(aqv);
     }
 
     public boolean atualizar(AQV aqv){
-        aqvdao.atualizar(aqv);
-        return false;
+        return aqvdao.atualizar(aqv);
     }
 
-    public boolean exibir(AQV aqv) {
-        aqvdao.exibir(aqv);
-        return false;
+    public List<AQV> exibir() {
+        return aqvdao.exibir();
     }
 
-    public boolean deletar (int id,AQV aqv) {
-        aqvdao.deletar(id,aqv);
-        return false;
+    public boolean deletar (int id) {
+        return aqvdao.deletar(id);
     }
+
+    public void adicionar(AQV aqv) {
+        aqvdao.cadastrar(aqv);
+    }
+
 
     public AQVController(int id, AQV AQV){
         aqvdao.BuscarPorId(id);
     }
-
 
 }

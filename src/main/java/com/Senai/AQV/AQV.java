@@ -10,6 +10,7 @@ public abstract class AQV extends Usuario {
         super(id, nome, CPF, endereço, telefone, email, login, senha);
     }
 
+
     @Override
     public String toString() {
         return "AQV{} \" +\n" +

@@ -7,14 +7,13 @@ import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class AQVDAO {
     private static final String caminho = "aqv.json";
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    private boolean salvarTodosAQVs(AQV aqvs) {
+    private boolean salvarTodosAQVs(List<AQV> aqvs) {
         try (Writer writer = new FileWriter(caminho)) {
             gson.toJson(aqvs, writer);
             return true;
@@ -26,57 +25,58 @@ public class AQVDAO {
     }
 
 
-    public List<AQV> exibir(AQV aqv) {
-        List<AQV> aqv = new ArrayList<>();
+    public List<AQV> exibir() {
+        List<AQV> aqvs = new ArrayList<>();
         try (Reader reader = new FileReader(caminho)) {
             Type tipoLista = new TypeToken<List<AQV>>() {
             }.getType();
-            aqv = gson.fromJson(reader, tipoLista);
-            if (aqv == null) {
-                aqv = new ArrayList<>();
+            aqvs = gson.fromJson(reader, tipoLista);
+            if (aqvs == null) {
+                aqvs = new ArrayList<>();
             }
         } catch (FileNotFoundException e) {
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return aqv;
+        return aqvs;
     }
 
 
     public boolean cadastrar(AQV aqv) {
-        List<AQV> aqvs = exibir(aqv);
+        List<AQV> aqvs = exibir();
         aqvs.add(aqv);
-        salvarTodosAQVs(aqv);
         return salvarTodosAQVs(aqvs);
     }
 
     public boolean atualizar(AQV aqv) {
-        List<AQV> aqvs = exibir(aqv);
+        List<AQV> aqvs = exibir();
+        boolean atualizado = false;
         for (int i = 0; i < aqvs.size(); i++) {
             if (aqvs.get(i).getId() == aqv.getId()) {
                 aqvs.set(i, aqv);
-                salvarTodosAQVs(aqv);
+                atualizado = true;
                 break;
             }
-            return true;
         }
-        salvarTodosAQVs(aqv);
+        if (atualizado) {
+            salvarTodosAQVs(aqvs);
+        }
         return false;
     }
 
-    public boolean deletar(int id, AQV aqv) {
-        List<AQV> aqvs = exibir(aqv);
-        boolean remove = aqvs.removeIf(AQV -> aqv.getId() == id);
+    public boolean deletar(int id) {
+        List<AQV> aqvs = exibir();
+        boolean remove = aqvs.removeIf(aqv -> aqv.getId() ==id);
         if (remove) {
-            salvarTodosAQVs(aqv);
+            salvarTodosAQVs(aqvs);
         }
         return remove;
     }
 
 
     public AQV BuscarPorId(int id) {
-        for (AQV aqv : exibir(aqv)) {
+        for (AQV aqv : exibir()) {
             if (aqv.getId() == id) {
                 return aqv;
             }
