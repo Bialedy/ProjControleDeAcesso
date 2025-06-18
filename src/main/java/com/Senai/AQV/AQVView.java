@@ -82,7 +82,13 @@ public class AQVView {
         String email = scannerPrompt("Novo Email: ");
         String login = scannerPrompt("Novo Login: ");
         String senha = scannerPrompt("Senha: ");
-        System.out.println(controller.atualizar(id, nome, CPF, endereco, telefone, email, login, senha));
+        AQV aqvAtualizado = new AQV(id, nome, CPF, endereco, telefone, email, login, senha) {
+            @Override
+            public DoubleStream stream() {
+                return DoubleStream.empty();
+            }
+        };
+        System.out.println(controller.atualizar(aqvAtualizado));
     }
 
 
